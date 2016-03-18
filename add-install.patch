@@ -1,0 +1,28 @@
+diff -up delta-2006.08.03/Build.mk.install delta-2006.08.03/Build.mk
+--- delta-2006.08.03/Build.mk.install	2016-03-18 16:55:15.110356986 -0400
++++ delta-2006.08.03/Build.mk	2016-03-18 16:56:09.435111392 -0400
+@@ -18,6 +18,11 @@ topformflat: %: %.c
+ clean:
+ 	rm -f topformflat
+ 
++install: all
++	cp topformflat $(DESTDIR)/usr/bin/
++	cp delta $(DESTDIR)/usr/bin/
++	cp multidelta $(DESTDIR)/usr/bin/
++
+ # **** for building the distribution
+ 
+ distbuild: topformflat.c
+diff -up delta-2006.08.03/Makefile.install delta-2006.08.03/Makefile
+--- delta-2006.08.03/Makefile.install	2016-03-18 16:53:50.395299389 -0400
++++ delta-2006.08.03/Makefile	2016-03-18 16:54:27.926438850 -0400
+@@ -13,6 +13,9 @@ all:
+ check:
+ 	$(MAKE) -f Test.mk check
+ 
++install:
++	$(MAKE) -f Build.mk install
++
+ clean:
+ 	$(MAKE) -f Build.mk clean
+ 	$(MAKE) -f Test.mk clean
